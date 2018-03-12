@@ -56,3 +56,32 @@ $safe = file_get_contents("https://api.vk.com/method/photos.save?".
 $safe = json_decode($safe);
 print_r($safe);
 echo "<br><br><br>";
+///////////////////////////////////////////////////////////
+
+
+
+
+
+
+$user_id = "13897175";
+$access_token = "980be43837f0e504c3f01ed57ff4ce5b76194deb150958a2b9fd85f1141b6ea91820f79d94b9c2d618e9f";
+$group_name = "162294758";
+$url = 'https://api.vk.com/method/messages.send';
+$params = array(
+    'user_id' => $user_id,
+    'message' => trim("5555"),
+//    'attachment' => "http://worldwideshop.ru/mes/img.jpg",
+ //   'attachment' => "photo-162045882_456239080,photo-162045882_456239080",
+//    'attachment' => "photo13897175_456239304",
+    'attachment' => "",
+    'access_token' => trim($access_token),
+    'v' => '5.37',
+);
+$result = file_get_contents($url, false, stream_context_create(array(
+    'http' => array(
+        'method' => 'POST',
+        'header' => 'Content-type: application/x-www-form-urlencoded',
+        'content' => http_build_query($params)
+    )
+)));
+var_dump($result);
